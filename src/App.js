@@ -1,24 +1,37 @@
-import logo from './logo.svg';
+
 import './App.css';
+import React, { useEffect, useState } from 'react';
+
 
 function App() {
+  const[Value,setValue]=useState(0);
+  
+  const increment=()=>{
+    setValue(Value+1);
+  }
+  
+  const decrement=()=>{
+      if(Value>0){
+        setValue(Value-1);
+      }
+  }
+  useEffect(()=>{
+    document.title=(`React ${Value}`);
+  },[Value])
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    
+    <div className="grid place-items-center h-[100vh] bg-gray-800">
+    <h1 className='text-2xl font-bold text-center shadow-gray-600 bg-white rounded-3xl uppercase italic mx-2 shadow-2xl p-5'>increment And Decrement Buttons Through React hooks</h1>
+     <section className="gap-12 grid grid-flow-col justify-center  bg-gray-300 border-x-4 border-black  px-5 py-16 rounded-3xl">
+     <div><button className="text-6xl font-bold  hover:text-7xl hover:brightness-75 text-center " onClick={increment} >+</button></div>
+     <p className="bg-black rounded-full p-5 text-2xl text-white">{Value}</p>
+     <div><button className="text-6xl font-bold  hover:text-7xl hover:brightness-75 text-center " onClick={decrement}>-</button></div>
+     </section>
     </div>
+    </>
   );
 }
 
